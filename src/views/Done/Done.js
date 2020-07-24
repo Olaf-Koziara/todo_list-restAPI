@@ -15,7 +15,7 @@ const Done = ({ todos, setTodos }) => {
 
   return (
     <>
-      <ul style={{ listStyle: "none", marginLeft: "330px" }}>
+      <ul style={{ listStyle: "none" }}>
         {todos
           .filter((todo) => todo.completed)
           .map((todo, index) => {

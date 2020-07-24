@@ -12,6 +12,7 @@
 }
 .TodoForm {
   margin: 20px;
+  font-family: -apple-system;
 }
 
 .formSubmit {
@@ -59,8 +60,8 @@
 
 .formWrapper {
   text-align: left;
-  margin-left: 40px;
-  width: 60%;
+
+  width: 600px;
 }
 .description {
   border: 0;

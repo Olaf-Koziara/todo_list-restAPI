@@ -3,6 +3,7 @@ import "./TodoItem.css";
 import deletIcon from "../../assets/001-delete.png";
 import editIcon from "../../assets/002-pen.png";
 import applyIcon from "../../assets/001-done.png";
+import { CSSTransition } from "react-transition-group";
 const TodoItem = ({
   todo,
   markComplete,
@@ -62,20 +63,26 @@ const TodoItem = ({
             <span>&#9432;</span>
           </p>
           {showPop ? (
-            <div className="card">
-              <div className="labelWrapper">
-                <div className="labelCreated">Created</div>
-                <div className="labelCreated">Due Date</div>
-              </div>
-              <div className="card-divider">
-                {todo.created_at} {todo.due_date}
-              </div>
+            <CSSTransition
+              in={showPop}
+              appear={true}
+              timeout={100}
+              classNames="pop"
+            >
+              <div className="card">
+                <div className="card-divider">
+                  <div className="labelCreated">Created</div>
+                  <div className="mx-auto">{todo.created_at}</div>
+                  <div className="labelCreated">Planed due date</div>
 
-              <div className="card-section">
-                <h4>{todo.title}</h4>
-                <p>{todo.description}</p>
+                  <div className="mx-auto">{todo.due_date}</div>
+                </div>
+                <div className="card-section">
+                  <h4>{todo.title}</h4>
+                  <p>{todo.description}</p>
+                </div>
               </div>
-            </div>
+            </CSSTransition>
           ) : (
             ""
           )}

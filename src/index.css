@@ -4,3 +4,28 @@
   margin: 0;
   font-family: Roboto;
 }
+.mx-auto {
+  margin: auto;
+}
+.card-divider {
+  display: block;
+}
+
+@keyframes scale-up-tl {
+  0% {
+    transform: scale(0.5);
+    transform-origin: 0 0;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: 0 0;
+  }
+}
+.pop-appear {
+  transform: scaleY(0);
+}
+.pop-appear-done {
+  transform: scale(1);
+  transition: 2s;
+  animation: scale-up-tl 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}

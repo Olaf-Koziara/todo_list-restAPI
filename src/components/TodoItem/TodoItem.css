@@ -10,6 +10,7 @@
   margin-top: 40px;
   z-index: 99;
 }
+
 .pop {
   opacity: 1;
   font-size: 20px;
@@ -51,7 +52,7 @@
   user-select: none;
 }
 .labelCreated {
-  margin-left: 100px;
+  margin: auto;
 }
 .labelWrapper {
   display: flex;
@@ -123,4 +124,9 @@
 }
 .doneButton:hover {
   background-color: #3bb273;
+}
+.pWrapper {
+  display: flex;
+  gap: 30px;
+  margin: 2px;
 }
