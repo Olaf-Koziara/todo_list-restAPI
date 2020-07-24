@@ -3,7 +3,14 @@ import "./TodoItem.css";
 import deletIcon from "../../assets/001-delete.png";
 import editIcon from "../../assets/002-pen.png";
 import applyIcon from "../../assets/001-done.png";
-const TodoItem = ({ todo, markComplete, deleteTodo, editTodo }) => {
+const TodoItem = ({
+  todo,
+  markComplete,
+  deleteTodo,
+  editTodo,
+  click,
+  clicked,
+}) => {
   const [edit, setEdit] = useState(false);
   const [showPop, setShowPop] = useState(false);
   const { id, title } = todo;
@@ -41,7 +48,16 @@ const TodoItem = ({ todo, markComplete, deleteTodo, editTodo }) => {
         </form>
       ) : (
         <>
-          <p className="title" onClick={() => setShowPop(!showPop)}>
+          <p
+            className="title"
+            onClick={() => {
+              if (!clicked || showPop) {
+                setShowPop(!showPop);
+
+                click();
+              }
+            }}
+          >
             {title}
             <span>&#9432;</span>
           </p>

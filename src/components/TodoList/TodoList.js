@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import TodoItem from "../TodoItem/TodoItem";
 import "./TodoList.css";
 import { CSSTransition } from "react-transition-group";
 const TodoList = ({ todos, markComplete, deleteTodo, editTodo }) => {
+  const [clicked, setClicked] = useState(false);
   return (
     <ul className="TodoList">
       {todos
@@ -24,6 +25,8 @@ const TodoList = ({ todos, markComplete, deleteTodo, editTodo }) => {
                 markComplete={markComplete}
                 deleteTodo={deleteTodo}
                 editTodo={editTodo}
+                click={() => setClicked(!clicked)}
+                clicked={clicked}
               />
             </CSSTransition>
           );
