@@ -1,0 +1,24 @@
+.TodoList {
+  list-style: none;
+
+  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  width: 50%;
+}
+.item-exit {
+  opacity: 1;
+  transition: 5s;
+}
+.item-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: 5s;
+}
+.item-appear {
+  opacity: 0;
+}
+.item-appear-done {
+  opacity: 1;
+  transition: 0.5s;
+}

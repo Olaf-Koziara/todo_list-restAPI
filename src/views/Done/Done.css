@@ -1,0 +1,9 @@
+.done-enter,
+.done-appear {
+  opacity: 0;
+}
+.done-enter-done,
+.done-appear-done {
+  opacity: 1;
+  transition: 0.5s;
+}

@@ -1,0 +1,22 @@
+.itemDone {
+  background-color: #40db88;
+
+  width: 20%;
+  padding: 4px;
+  border-radius: 10px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.title {
+  font-weight: bold;
+}
+.iconWrapper {
+  width: 24px;
+  height: 24px;
+  transition: 0.5s;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.iconWrapper:hover {
+  background-color: red;
+}

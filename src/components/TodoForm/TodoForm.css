@@ -1,0 +1,85 @@
+.inputTitle {
+  border: 0;
+
+  width: 150px;
+  padding: 0px;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+.inputTitle:focus {
+  padding: 7px;
+}
+.TodoForm {
+  margin: 20px;
+}
+
+.formSubmit {
+  background-color: #3bb273;
+  border: 0;
+  border-radius: 2px;
+  padding: 10px;
+  margin: 5px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+}
+.formSubmit:hover {
+  box-shadow: 0px 0px 4px 0px black;
+}
+.newButton {
+  background-color: #3bb273;
+  border: 0;
+  border-radius: 2px;
+  padding: 10px;
+  margin: 5px;
+  font-weight: 600;
+  transition: 0.3s;
+  cursor: pointer;
+  height: 50px;
+}
+.form-appear {
+  opacity: 0;
+}
+.form-appear-done {
+  transition: 2s;
+  opacity: 1;
+}
+.button-appear {
+  transform: scale(0);
+}
+.button-appear-done {
+  transition: 0.5s;
+  transform: scale(1);
+}
+.buttonWrapper {
+  width: 400px;
+}
+
+.formWrapper {
+  text-align: left;
+  margin-left: 40px;
+  width: 60%;
+}
+.description {
+  border: 0;
+  padding: 0;
+  height: 20px;
+  transition: 0.5s ease-in-out;
+
+  width: 150px;
+  display: block;
+  margin: 20px 0;
+}
+.description:focus {
+  height: 60px;
+  margin: 30px 0;
+}
+.dueDate {
+  border: 0;
+  width: 40%;
+}
+.hourInput {
+  width: 40%;
+}
