@@ -23,7 +23,7 @@ const TodoItem = ({
     todo.updated_at = new Date().toUTCString();
   };
   return (
-    <li className="todoItem" key={id}>
+    <li className="todoItem " key={id}>
       <button onClick={() => markComplete(id)} className="doneButton">
         <img src={applyIcon} alt="done" />
       </button>
@@ -50,7 +50,7 @@ const TodoItem = ({
       ) : (
         <>
           <p
-            className="title"
+            className="itemTitle"
             onClick={() => {
               if (!clicked || showPop) {
                 setShowPop(!showPop);
@@ -60,20 +60,20 @@ const TodoItem = ({
             }}
           >
             {title}
-            <span>&#9432;</span>
           </p>
+
           {showPop ? (
             <CSSTransition
               in={showPop}
               appear={true}
-              timeout={100}
+              timeout={0}
               classNames="pop"
             >
               <div className="card">
                 <div className="card-divider">
                   <div className="labelCreated">Created</div>
                   <div className="mx-auto">{todo.created_at}</div>
-                  <div className="labelCreated">Planed due date</div>
+                  <div className="labelCreated">Planned due date</div>
 
                   <div className="mx-auto">{todo.due_date}</div>
                 </div>
@@ -99,6 +99,9 @@ const TodoItem = ({
       ) : (
         ""
       )}
+      <div className="accordion-content" data-tab-content>
+        {todo.description}
+      </div>
     </li>
   );
 };

@@ -5,7 +5,7 @@ import { CSSTransition } from "react-transition-group";
 const TodoList = ({ todos, markComplete, deleteTodo, editTodo }) => {
   const [clicked, setClicked] = useState(false);
   return (
-    <ul className="TodoList">
+    <ul className=" todoList">
       {todos
         .filter((todo) => !todo.completed)
         .map((todo, index) => {
