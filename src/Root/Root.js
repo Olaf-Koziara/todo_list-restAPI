@@ -9,15 +9,14 @@ const Router = () => {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/todos", {
-        params: {
-          _limit: 20,
-        },
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-      })
-      .then((response) => setTodos(response.data));
+      .get(
+        "https://my-json-server.typicode.com/Olaf-Koziara/jsonserverTodos/todos",
+        {},
+      )
+      .then((response) => {
+        console.log(response.data);
+        setTodos(response.data);
+      });
   }, []);
   return (
     <BrowserRouter>

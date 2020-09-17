@@ -18,7 +18,7 @@ const App = ({ setTodos, todos }) => {
       }
       return todo;
     });
-    axios.patch(`http://localhost:5000/todos/${id}`, {
+    axios.patch(`https://api.jsonbin.io/b/5f638e9f302a837e9568265e/${id}`, {
       completed: true,
     });
 
@@ -35,21 +35,29 @@ const App = ({ setTodos, todos }) => {
     const created_at = new Date().toString().substr(0, 21);
 
     axios
-      .post(`http://localhost:5000/todos`, {
-        title,
-        description,
-        due_date,
-        created_at,
-      })
+      .post(
+        `https://my-json-server.typicode.com/Olaf-Koziara/jsonserverTodos/todos`,
+        {
+          title,
+          description,
+          due_date,
+          created_at,
+        },
+      )
       .then((response) => setTodos([...todos, response.data]));
 
     e.target.reset();
   };
   const deleteTodo = (id) => {
-    axios.delete(`http://localhost:5000/todos/${id}`).then((response) => {
-      const filteredTodos = todos.filter((todo) => todo.id !== id);
-      setTodos(filteredTodos);
-    });
+    axios
+      .delete(
+        `https://my-json-server.typicode.com/Olaf-Koziara/jsonserverTodos/todos/${id}`,
+        {},
+      )
+      .then((response) => {
+        const filteredTodos = todos.filter((todo) => todo.id !== id);
+        setTodos(filteredTodos);
+      });
     setClicked(false);
   };
   const editTodo = (e, id) => {
@@ -57,10 +65,15 @@ const App = ({ setTodos, todos }) => {
     const newTitle = e.target.title.value;
 
     axios
-      .patch(`http://localhost:5000/todos/${id}`, {
-        title: newTitle,
-      })
+      .patch(
+        `https://my-json-server.typicode.com/Olaf-Koziara/jsonserverTodos/todos/${id}`,
+        {
+          title: newTitle,
+        },
+        {},
+      )
       .then((response) => {
+        console.log(response);
         const updatedToDos = todos.map((todo) => {
           if (todo.id === id) {
             todo.title = newTitle;
