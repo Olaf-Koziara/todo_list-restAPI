@@ -11,14 +11,10 @@ const Router = () => {
     axios
       .get("http://localhost:5000/todos", {
         params: {
-          _limit: 10,
+          _limit: 20,
         },
         headers: {
           "Access-Control-Allow-Origin": "*",
-        },
-        proxy: {
-          host: "104.236.174.88",
-          port: 3128,
         },
       })
       .then((response) => setTodos(response.data));
@@ -28,7 +24,7 @@ const Router = () => {
       <MainTemplate>
         <Switch>
           <Route exact={true} path="/">
-            <App todos={todos} setTodos={setTodos} id={12} />
+            <App todos={todos} setTodos={setTodos} />
           </Route>
           <Route to="/Done">
             <Done todos={todos} setTodos={setTodos} />

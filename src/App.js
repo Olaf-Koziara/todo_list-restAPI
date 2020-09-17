@@ -5,9 +5,10 @@ import TodoList from "./components/TodoList/TodoList";
 import TodoForm from "./components/TodoForm/TodoForm";
 
 const App = ({ setTodos, todos }) => {
-  const [lastID, setID] = useState(10);
-  // const [counter, setCounter] = useState(0);
-  // const [completed, setCompleted] = useState(false);
+  const [clicked, setClicked] = useState(false);
+  const clickOnItem = () => {
+    setClicked(!clicked);
+  };
   const markComplete = (id) => {
     console.log(id);
     const markedTodos = todos.map((todo) => {
@@ -22,15 +23,16 @@ const App = ({ setTodos, todos }) => {
     });
 
     setTodos(markedTodos);
+    setClicked(false);
   };
 
-  const addTodo = (e) => {
+  const addTodo = (e, selectedDate) => {
     e.preventDefault();
     const title = e.target.title.value;
     const description = e.target.description.value;
-    const due_date = e.target.appt.value + " " + e.target.dueDate.value;
+    console.log(selectedDate);
+    const due_date = selectedDate;
     const created_at = new Date().toString().substr(0, 21);
-    console.log(due_date);
 
     axios
       .post(`http://localhost:5000/todos`, {
@@ -48,17 +50,15 @@ const App = ({ setTodos, todos }) => {
       const filteredTodos = todos.filter((todo) => todo.id !== id);
       setTodos(filteredTodos);
     });
+    setClicked(false);
   };
   const editTodo = (e, id) => {
     e.preventDefault();
     const newTitle = e.target.title.value;
-    console.log(newTitle);
-    console.log(id);
+
     axios
-      .put(`http://localhost:5000/todos/${id}`, {
-        body: JSON.stringify({
-          title: newTitle,
-        }),
+      .patch(`http://localhost:5000/todos/${id}`, {
+        title: newTitle,
       })
       .then((response) => {
         const updatedToDos = todos.map((todo) => {
@@ -78,6 +78,8 @@ const App = ({ setTodos, todos }) => {
         markComplete={markComplete}
         deleteTodo={deleteTodo}
         editTodo={editTodo}
+        clickOnItem={clickOnItem}
+        isClicked={clicked}
       />
       <TodoForm addTodo={addTodo} />
     </div>

@@ -19,7 +19,6 @@ const Done = ({ todos, setTodos }) => {
         {todos
           .filter((todo) => todo.completed)
           .map((todo, index) => {
-            console.log("index" + index);
             if (todo.completed) {
               return (
                 <CSSTransition

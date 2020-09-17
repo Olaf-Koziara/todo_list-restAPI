@@ -1,39 +1,45 @@
 import React, { useState } from "react";
 import "./TodoItem.css";
-import deletIcon from "../../assets/001-delete.png";
-import editIcon from "../../assets/002-pen.png";
-import applyIcon from "../../assets/001-done.png";
+import EditIcon from "@material-ui/icons/Edit";
+import DoneIcon from "@material-ui/icons/Done";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import { CSSTransition } from "react-transition-group";
+import Chip from "@material-ui/core/Chip";
+import AssignmentIcon from "@material-ui/icons/Assignment";
+import { makeStyles } from "@material-ui/core/styles";
+const useStyles = makeStyles({
+  root: {
+    height: "60px",
+    fontSize: "1.2rem",
+  },
+});
 const TodoItem = ({
   todo,
   markComplete,
   deleteTodo,
   editTodo,
   click,
-  clicked,
+  isClicked,
 }) => {
+  const { id, created_at, updated_at, due_date, title, description } = todo;
   const [edit, setEdit] = useState(false);
   const [showPop, setShowPop] = useState(false);
-  const { id, title } = todo;
   const [newTitle, setNewTitle] = useState(title);
   const handleChange = (e) => {
     setNewTitle(e.target.value);
   };
-  const setDate = () => {
-    todo.updated_at = new Date().toUTCString();
+  const setUpdateDate = () => {
+    todo.updated_at = new Date();
   };
+  const classes = useStyles();
   return (
     <li className="todoItem " key={id}>
-      <button onClick={() => markComplete(id)} className="doneButton">
-        <img src={applyIcon} alt="done" />
-      </button>
-
       {edit ? (
         <form
           onSubmit={(e) => {
             editTodo(e, id);
             setEdit(!edit);
-            setDate();
+            setUpdateDate();
           }}
         >
           <input
@@ -44,23 +50,26 @@ const TodoItem = ({
             className="titleInput"
           />
           <button className="applyButton" type="submit">
-            <img src={applyIcon} alt="apply" />
+            <DoneIcon />
           </button>
         </form>
       ) : (
         <>
-          <p
-            className="itemTitle"
+          <Chip
+            classes={{ root: classes.root }}
+            color="primary"
+            deleteIcon={<DoneIcon />}
+            onDelete={() => markComplete(id)}
+            label={title}
+            icon={<AssignmentIcon />}
             onClick={() => {
-              if (!clicked || showPop) {
+              if (!isClicked || showPop) {
                 setShowPop(!showPop);
 
                 click();
               }
             }}
-          >
-            {title}
-          </p>
+          />
 
           {showPop ? (
             <CSSTransition
@@ -71,15 +80,25 @@ const TodoItem = ({
             >
               <div className="card">
                 <div className="card-divider">
-                  <div className="labelCreated">Created</div>
-                  <div className="mx-auto">{todo.created_at}</div>
-                  <div className="labelCreated">Planned due date</div>
+                  <div className="labelDate">
+                    Created <div className=" cardDate">{created_at}</div>
+                  </div>
 
-                  <div className="mx-auto">{todo.due_date}</div>
+                  <div className="labelDate">
+                    Planned due date
+                    <div className="mx-auto cardDate"> {due_date}</div>
+                  </div>
+                  <div className="labelDate">
+                    Last updated:
+                    <div className="mx-auto cardDate">
+                      {" "}
+                      {updated_at ? updated_at.toLocaleDateString() : "none"}
+                    </div>
+                  </div>
                 </div>
                 <div className="card-section">
-                  <h4>{todo.title}</h4>
-                  <p>{todo.description}</p>
+                  <h4>{title}</h4>
+                  <p>{description}</p>
                 </div>
               </div>
             </CSSTransition>
@@ -89,12 +108,17 @@ const TodoItem = ({
         </>
       )}
       <button onClick={() => deleteTodo(id)} className="deleteButton">
-        <img src={deletIcon} alt="delete" />
+        <DeleteForeverIcon />
       </button>
       {!edit ? (
-        <button className="editButton" onClick={() => setEdit(!edit)}>
+        <button
+          className="editButton"
+          onClick={() => {
+            if (!showPop) setEdit(!edit);
+          }}
+        >
           {" "}
-          <img src={editIcon} alt="edit" />
+          <EditIcon />
         </button>
       ) : (
         ""

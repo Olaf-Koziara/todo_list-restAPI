@@ -10,6 +10,9 @@
 .card-divider {
   display: block;
 }
+.d-flex {
+  display: flex;
+}
 
 @keyframes scale-up-tl {
   0% {
