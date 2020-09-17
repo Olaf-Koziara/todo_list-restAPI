@@ -15,6 +15,7 @@ const Done = ({ todos, setTodos }) => {
 
   return (
     <>
+      <h1>Done</h1>
       <ul style={{ listStyle: "none" }}>
         {todos
           .filter((todo) => todo.completed)

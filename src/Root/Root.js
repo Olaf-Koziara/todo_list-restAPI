@@ -25,7 +25,7 @@ const Router = () => {
           <Route exact={true} path="/">
             <App todos={todos} setTodos={setTodos} />
           </Route>
-          <Route to="/Done">
+          <Route exact to="/Done">
             <Done todos={todos} setTodos={setTodos} />
           </Route>
         </Switch>
